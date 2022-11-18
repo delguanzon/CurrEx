@@ -14,7 +14,7 @@
 </head>
 
 <body class="container">
-  <form class="form-inline">
+  <form class="form-inline" id="form">
 
     <div class="input-group  mb-2 mr-sm-2">
       <div class="form-floating">
@@ -28,11 +28,8 @@
         <>
       </span>
       <div class="form-floating">
-        <input class="form-control" id="enterUsDollarAmount" type="text" placeholder="Enter US Dollar Amount"
-          data-sb-validations="required" />
-        <label for="enterUsDollarAmount">Foreign Value</label>
-        <div class="invalid-feedback" data-sb-feedback="enterUsDollarAmount:required">Enter US Dollar Amount is
-          required.</div>
+        <input class="form-control" id="forexAmount" type="text" placeholder="Enter US Dollar Amount" disabled/>
+        <label for="forexAmount">Foreign Value</label>
       </div>
       <div class="">
         <select>
