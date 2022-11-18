@@ -8,14 +8,30 @@ async function getForexUSD() {
   if (response.conversion_rates) {
     printConversion(response);
   } else {
-    console.log(response);
+    printError(response);
   }
 }
 
 
-function printConversion(response) {
-  document.getElementById("forexAmount").value = response.conversion_rates.PHP;
+function getConvertedValue(rate, amount) {
+  return parseFloat(rate) * parseFloat(amount);
 }
+
+//UI Logic
+
+function printConversion(response) {
+  const curr = document.getElementById("currency").value;
+  const rate =  response.conversion_rates[curr];
+  const amount = document.getElementById("amount").value;
+  console.log(rate + " r:a " + amount);
+  document.getElementById("forexAmount").value = getConvertedValue(rate, amount).toFixed(2);
+}
+
+
+function printError(error) {
+  document.getElementById("error").replaceChildren("We've encountered an error: " + error + " Please try again later.");
+}
+
 
 function handleFormSubmission(e) {
   e.preventDefault();
@@ -23,7 +39,7 @@ function handleFormSubmission(e) {
 
 }
 
-//UI Logic
+
 window.addEventListener('load', function () {
   document.getElementById('form').addEventListener('submit', handleFormSubmission);
   console.log(`${process.env.API_KEY}`);
