@@ -27,7 +27,6 @@ This is a webapp for converting US Dollar Amount into the user's selected curren
 * Clone this repository on your desktop
 * Navigate to the top level of the directory using bash or cmd
 * Run ``` $npm install ``` to install dependencies
-* To test, use ```npm run test```
 * For building and live preview, use ```npm run start```
 
 ### API Key Setup Instructions
@@ -51,6 +50,9 @@ OR
   ```touch .env | echo "API_KEY=<YOUR+API+KEY+HERE>" >.env ```
 
   where <YOUR+API+KEY+HERE> should be replaced by the api key.
+
+Your .env file should have something smilar to this:
+```API_KEY=1232131276321671312```
 
 ## Known Bugs
 
