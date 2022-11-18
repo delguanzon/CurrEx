@@ -12,7 +12,6 @@ async function getForexUSD() {
   }
 }
 
-
 function getConvertedValue(rate, amount) {
   return parseFloat(rate) * parseFloat(amount);
 }
@@ -21,9 +20,12 @@ function getConvertedValue(rate, amount) {
 
 function printConversion(response) {
   const curr = document.getElementById("currency").value;
-  const rate =  response.conversion_rates[curr];
-  const amount = document.getElementById("amount").value;
-  console.log(rate + " r:a " + amount);
+  const rate = response.conversion_rates[curr];
+  let amount = document.getElementById("amount").value;
+  if (!amount) {
+    amount = 1;
+    document.getElementById("amount").value = 1;
+  }
   document.getElementById("forexAmount").value = getConvertedValue(rate, amount).toFixed(2);
 }
 

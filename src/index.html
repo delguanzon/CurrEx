@@ -14,15 +14,11 @@
 </head>
 
 <body class="container">
-  <form class="form-inline" id="form">
-
-    <div class="input-group  mb-2 mr-sm-2">
+  <form class="form-inline needs-validation" id="form">
+    <div class="input-group has-validation mb-2 mr-sm-2">
       <div class="form-floating">
-        <input class="form-control" id="amount" type="text" placeholder="Enter US Dollar Amount"
-          data-sb-validations="required" />
-        <label for="amount">Enter US Dollar Amount</label>
-      </div>
-      <div class="invalid-feedback" data-sb-feedback="amount:required">Enter US Dollar Amount is required.
+        <input class="form-control" id="amount" type="number" placeholder="Enter US Dollar Amount"/>
+        <label for="amount">Enter US Dollar Amount</label>        
       </div>
       <span class="input-group-text">
         <>
@@ -41,9 +37,10 @@
         </select>
       </div>
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    <button type="submit" class="btn btn-primary form-control mb-2">Submit</button>
   </form>
   <div id="error"></div>
+  
 </body>
 
 </html>
