@@ -1,8 +1,8 @@
-#  Galactic Birthday Calculator
+#  Currency Exchange Calculator
 
 #### By Yodel Guanzon <yodelguanzon@gmail.com>
 
-#### This is an independent project to test out our skills with TDD Approach using jest.
+#### This is an independent project to test out our skills with API calls and async function.
 
 ## Technologies Used
 
@@ -20,14 +20,7 @@
 
 ## Description
 
-A Super Galactic Age Calculator that converts Earth Year/Age into Planetary Age based on the following condition:
-
-* Returns their age in Mercury years. (A Mercury year is .24 Earth years.)
-* Returns their age in Venus years. (A Venus year is .62 Earth years.)
-* Returns their age in Mars years. (A Mars year is 1.88 Earth years.)
-* Returns their age in Jupiter years. (A Jupiter year is 11.86 Earth years.)
-
-It would also return the remaining years based on the user's age and zodiac sign for each planet and the number of years lived past if they surpassed the life expectancy for their zodiac sign.
+This is a webapp for converting US Dollar Amount into the user's selected currency using the Exchange Rate API <https://www.exchangerate-api.com/>
 
 ## Setup/Installation Requirements
 
@@ -37,7 +30,16 @@ It would also return the remaining years based on the user's age and zodiac sign
 * To test, use ```npm run test```
 * For building and live preview, use ```npm run start```
 
-### API Key Setup
+### API Key Setup Instructions
+
+#### Where to get the API key
+
+* Visit the ExchangeRate-API site <https://www.exchangerate-api.com/>. Input your email address and click the "Get Free Key" button.
+* You'll be prompted to create an account with your email, first name and a password. Agree to the terms of use and click "Get Started!"
+* At this point, you'll be able to access a dashboard that includes your API key as well as your remaining API calls for the month
+
+
+#### How to use the API Key in the project
 
 * Using your window explorer, Create a .env file in the top level of the directory .
 * Edit the file and type in ``` API_KEY=YOUR+API+KEY+HERE ```  , where you replace the value with your own API Key.
@@ -78,5 +80,5 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
-Copyright (c) 11/14/2022 Yodel Guanzon
+Copyright (c) 11/18/2022 Yodel Guanzon
 
