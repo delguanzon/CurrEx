@@ -29,12 +29,9 @@ function printConversion(response) {
   document.getElementById("forexAmount").value = getConvertedValue(rate, amount).toFixed(2);
 }
 
-
-
 function printError(error) {
   document.getElementById("error").replaceChildren("We've encountered an error: " + error + " Please try again later.");
 }
-
 
 function handleFormSubmission(e) {
   e.preventDefault();
@@ -43,9 +40,11 @@ function handleFormSubmission(e) {
   let seshCtr = parseInt(sessionStorage.getItem("seshCtr"));
   console.log('Number of times a fetch happened: ' + fetchCtr);
   console.log('Number of times a sessionCall happened: ' + seshCtr);
-
 }
 
+function getCurrCode() {
+
+}
 
 window.addEventListener('load', function () {
   sessionStorage.setItem("fetchCtr", 0);
