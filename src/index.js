@@ -11,6 +11,16 @@ async function getForexUSD() {
   }
 }
 
+async function getSymbols() {
+  const response = await ForexService.getSymbols();
+  if (response.success === true) {
+    console.log(response.success);
+    displaySymbols(response);
+  } else {
+    printError(response);
+  }
+}
+
 function getConvertedValue(rate, amount) {
   return parseFloat(rate) * parseFloat(amount);
 }
@@ -42,12 +52,17 @@ function handleFormSubmission(e) {
   console.log('Number of times a sessionCall happened: ' + seshCtr);
 }
 
-function getCurrCode() {
-
+function displaySymbols(response) {
+  for(const symbol in response.symbols) {
+    let code = document.createElement("option");
+    code.append(symbol);
+    document.getElementById("currency").append(code);
+  }
 }
 
 window.addEventListener('load', function () {
   sessionStorage.setItem("fetchCtr", 0);
   sessionStorage.setItem("seshCtr", 0);
+  getSymbols();
   document.getElementById('form').addEventListener('submit', handleFormSubmission);
 });

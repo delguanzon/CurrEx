@@ -6,7 +6,7 @@ export default class ForexService {
     let sessionData = sessionStorage.getItem("forexData");
     let fetchCtr = parseInt(sessionStorage.getItem("fetchCtr"));
     let seshCtr = parseInt(sessionStorage.getItem("seshCtr"));
-
+    
     if (!sessionData) {
       try {
         const response = await fetch(`https://v6.exchangerate-api.com/v6/${process.env.API_KEY}/latest/USD`);
@@ -14,7 +14,6 @@ export default class ForexService {
         if (!response.ok) {
           const errorMessage = `${response.status} ${response.statusText} ${jsonResponse.message}`;
           throw new Error(errorMessage);
-
         }
         sessionStorage.setItem("forexData", JSON.stringify(jsonResponse));
         fetchCtr += 1;
@@ -41,7 +40,6 @@ export default class ForexService {
         const errorMessage = `${response.status} ${response.statusText} ${jsonResponse.message}`;
         throw new Error(errorMessage);
       }
-      sessionStorage.setItem("forexData", JSON.stringify(jsonResponse));
       return jsonResponse;
     }
     catch (error) {
@@ -49,8 +47,4 @@ export default class ForexService {
     }
   }
 
-}
-  // static async getPairEx() {
-
-  // }
 }
