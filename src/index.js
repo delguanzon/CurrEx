@@ -1,7 +1,6 @@
 import './assets/css/styles.css';
 import ForexService from './../src/js/forexservice.js';
 
-
 //Business Logic
 async function getForexUSD() {
   const response = await ForexService.getForexUsd();
@@ -19,6 +18,7 @@ function getConvertedValue(rate, amount) {
 //UI Logic
 
 function printConversion(response) {
+
   const curr = document.getElementById("currency").value;
   const rate = response.conversion_rates[curr];
   let amount = document.getElementById("amount").value;
@@ -30,6 +30,7 @@ function printConversion(response) {
 }
 
 
+
 function printError(error) {
   document.getElementById("error").replaceChildren("We've encountered an error: " + error + " Please try again later.");
 }
@@ -38,13 +39,16 @@ function printError(error) {
 function handleFormSubmission(e) {
   e.preventDefault();
   getForexUSD();
+  let fetchCtr = parseInt(sessionStorage.getItem("fetchCtr"));
+  let seshCtr = parseInt(sessionStorage.getItem("seshCtr"));
+  console.log('Number of times a fetch happened: ' + fetchCtr);
+  console.log('Number of times a sessionCall happened: ' + seshCtr);
 
 }
 
 
 window.addEventListener('load', function () {
+  sessionStorage.setItem("fetchCtr", 0);
+  sessionStorage.setItem("seshCtr", 0);
   document.getElementById('form').addEventListener('submit', handleFormSubmission);
-  console.log(`${process.env.API_KEY}`);
-  let response = ForexService.getForexUsd();
-  console.log(`${response}`);
 });
