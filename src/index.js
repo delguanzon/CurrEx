@@ -14,7 +14,6 @@ async function getForexUSD() {
 async function getSymbols() {
   const response = await ForexService.getSymbols();
   if (response.success === true) {
-    console.log(response.success);
     displaySymbols(response);
   } else {
     printError(response);
