@@ -52,17 +52,16 @@ function handleFormSubmission(e) {
 }
 
 function displaySymbols(response) {
-  document.getElementById("currency").replaceChildren("");
-  Object.values(response.symbols).forEach( obj => {
-    let code = document.createElement("option");
-    code.append(obj.code);
-    document.getElementById("currency").append(code);
+  const select = document.querySelectorAll(".currency");
+  select.forEach( element => {
+    element.replaceChildren();
+    console.log(element);
+    Object.values(response.symbols).forEach( obj => {
+      let code = document.createElement("option");
+      code.append(obj.code);
+      element.append(code);
+    });
   });
-  // for(const symbol in response) {
-  //   let code = document.createElement("option");
-  //   code.append(symbol);
-  //   document.getElementById("currency").append(code);
-  // }
 }
 
 window.addEventListener('load', function () {
