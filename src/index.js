@@ -52,11 +52,17 @@ function handleFormSubmission(e) {
 }
 
 function displaySymbols(response) {
-  for(const symbol in response.symbols) {
+  document.getElementById("currency").replaceChildren("");
+  Object.values(response.symbols).forEach( obj => {
     let code = document.createElement("option");
-    code.append(symbol);
+    code.append(obj.code);
     document.getElementById("currency").append(code);
-  }
+  });
+  // for(const symbol in response) {
+  //   let code = document.createElement("option");
+  //   code.append(symbol);
+  //   document.getElementById("currency").append(code);
+  // }
 }
 
 window.addEventListener('load', function () {
