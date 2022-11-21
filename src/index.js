@@ -5,6 +5,10 @@ import ForexService from './../src/js/forexservice.js';
 //Business Logic
 async function getForexUSD() {
   const response = await ForexService.getForexUsd();
+  let fetchCtr = parseInt(sessionStorage.getItem("fetchCtr"));
+  let seshCtr = parseInt(sessionStorage.getItem("seshCtr"));
+  console.log('Number of times a fetch happened: ' + fetchCtr);
+  console.log('Number of times a sessionCall happened: ' + seshCtr);
   if (response.conversion_rates) {
     printConversion(response);
   } else {
@@ -23,7 +27,6 @@ async function getSymbols() {
 
 async function getForexAny(base, conv, amount, target) {
   const response = await ForexService.getForexAny(base, conv, amount);
-  console.log(amount);
   if (response.result && response.result != null) {
     printPairConvert(response, target);
   } else {
@@ -63,11 +66,7 @@ function printError(error) {
 
 function handleFormSubmission(e) {
   e.preventDefault();
-  getForexUSD();
-  let fetchCtr = parseInt(sessionStorage.getItem("fetchCtr"));
-  let seshCtr = parseInt(sessionStorage.getItem("seshCtr"));
-  console.log('Number of times a fetch happened: ' + fetchCtr);
-  console.log('Number of times a sessionCall happened: ' + seshCtr);
+  getForexUSD();  
 }
 
 function handleKeyup(e) {
@@ -135,7 +134,6 @@ function displaySymbols(response) {
   select.forEach(element => {
     element.replaceChildren();
     element.addEventListener('click', handleSymbolClick);
-    console.log(element);
     Object.values(response.symbols).forEach(obj => {
       let code = document.createElement("option");
       code.append(obj.code);

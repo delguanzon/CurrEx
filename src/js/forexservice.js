@@ -16,6 +16,9 @@ export default class ForexService {
           throw new Error(errorMessage);
         }
         sessionStorage.setItem("forexData", JSON.stringify(jsonResponse));
+        if(!fetchCtr) {
+          fetchCtr = 0;
+        }
         fetchCtr += 1;
         sessionStorage.setItem("fetchCtr", fetchCtr);
         return jsonResponse;
