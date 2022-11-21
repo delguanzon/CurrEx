@@ -17,6 +17,7 @@
 * Html Loader
 * DotEnv
 * Bootstrap
+* Bootstrap Icons
 
 ## Description
 
