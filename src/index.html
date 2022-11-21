@@ -37,21 +37,21 @@
   </form>
 
   <div class="input-group mb-2 mr-sm-2" id="pair-grp">
-    <select class="input-group-text currency form-select-lg text-bg-warning" id="curr1">
+    <select class="currency form-select-lg text-bg-warning text-bg-dark"" id="curr1">
       <option value="AED" selected>USD</option>
     </select>
     <div class="form-floating">
       <input class="form-control" id="forex-amt1" type="number" placeholder="Enter US Dollar Amount"/>
       <label for="amount">Enter US Dollar Amount</label>        
     </div>
-    <span class="input-group-text">
-      <->
-    </span>
+    <span class="input-group-text" id="pair-direction">
+      <i class="bi bi-arrow-left-right "></i>
+    </span>    
     <div class="form-floating">
       <input class="form-control" id="forex-amt2" type="text" placeholder="Enter US Dollar Amount"/>
       <label for="forexAmount">Foreign Value</label>
     </div>
-    <select class="input-group-text currency form-select-lg text-bg-warning" id="curr2">
+    <select class="currency form-select-lg text-bg-dark" id="curr2">
       <option value="AED" selected>AED</option>
     </select>    
   </div>

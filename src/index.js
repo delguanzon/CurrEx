@@ -21,10 +21,10 @@ async function getSymbols() {
   }
 }
 
-async function getForexAny(base, conv, amount) {
+async function getForexAny(base, conv, amount, target) {
   const response = await ForexService.getForexAny(base, conv, amount);
   if (response.success === true) {
-    printPairConvert(response);
+    printPairConvert(response, target);
   } else {
     printError(response);
   }
@@ -48,10 +48,13 @@ function printConversion(response) {
   document.getElementById("forexAmount").value = getConvertedValue(rate, amount).toFixed(2);
 }
 
-function printPairConvert(response) {
+function printPairConvert(response, target) {
+  const div = document.getElementById("pair-direction");
   const value = response.result;
   console.log(value);
-  document.getElementById('forex-amt2').value = value;
+  
+  div.setAttribute("class", "input-group-text text-bg-success");
+  document.getElementById(`${target}`).value = value;
 }
 
 function printError(error) {
@@ -67,19 +70,38 @@ function handleFormSubmission(e) {
   console.log('Number of times a sessionCall happened: ' + seshCtr);
 }
 
-function handleKeypress() {
-  let base = document.getElementById("curr1").value;
-  let conv = document.getElementById("curr2").value;
-  let amount = document.getElementById("forex-amt1").value;
-  getForexAny(base, conv, amount);
+function handleKeyup(e) {
+  const curr1 = document.getElementById("curr1").value;
+  const curr2 = document.getElementById("curr2").value;
+  const amount = document.getElementById(e.target.id).value;
+
+  if (e.target.id === "forex-amt1") {
+    getForexAny(curr1, curr2, amount, "forex-amt2");
+  }
+  else if (e.target.id === "forex-amt2") {
+    getForexAny(curr2, curr1, amount, "forex-amt1");
+  }
+}
+
+function handleKeydown(e) {
+  const div = document.getElementById("pair-direction");  
+  let i = document.createElement("i");
+
+  if (e.target.id === "forex-amt1")
+    i.setAttribute("class", "bi bi-caret-right-fill");
+  if (e.target.id === "forex-amt2")
+    i.setAttribute("class", "bi bi-caret-left-fill");
+
+  div.setAttribute("class", "input-group-text text-bg-warning");
+  div.replaceChildren(i);
 }
 
 function displaySymbols(response) {
   const select = document.querySelectorAll(".currency");
-  select.forEach( element => {
+  select.forEach(element => {
     element.replaceChildren();
     console.log(element);
-    Object.values(response.symbols).forEach( obj => {
+    Object.values(response.symbols).forEach(obj => {
       let code = document.createElement("option");
       code.append(obj.code);
       element.append(code);
@@ -92,5 +114,6 @@ window.addEventListener('load', function () {
   sessionStorage.setItem("seshCtr", 0);
   getSymbols();
   document.getElementById('form').addEventListener('submit', handleFormSubmission);
-  document.getElementById('pair-grp').addEventListener('keyup', handleKeypress);
+  document.getElementById('pair-grp').addEventListener('keyup', handleKeyup);
+  document.getElementById('pair-grp').addEventListener('keyup', handleKeydown);
 });
