@@ -1,0 +1,10 @@
+body {
+  height: 100vh;
+  background: url('./../images/bg.png');
+}
+
+span.headers {
+  color: rgb(245, 245, 245);
+  background-color: rgba(0, 0, 0, 0.438);
+  border-radius: 10px;
+}

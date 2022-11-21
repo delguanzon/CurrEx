@@ -54,7 +54,7 @@ function printPairConvert(response, target) {
   console.log(value);
   
   div.setAttribute("class", "input-group-text text-bg-success");
-  document.getElementById(`${target}`).value = value;
+  document.getElementById(`${target}`).value = value.toFixed(2);
 }
 
 function printError(error) {
@@ -92,7 +92,7 @@ function handleKeydown(e) {
   if (e.target.id === "forex-amt2")
     i.setAttribute("class", "bi bi-caret-left-fill");
 
-  div.setAttribute("class", "input-group-text text-bg-warning");
+  div.setAttribute("class", "input-group-text text-bg-danger");
   div.replaceChildren(i);
 }
 

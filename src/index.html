@@ -13,50 +13,64 @@
   <title>Document</title>
 </head>
 
-<body class="container">
-  <form class="form-inline needs-validation" id="form">
-    <div class="input-group mb-2 mr-sm-2">
-      <div class="form-floating">
-        <input class="form-control" id="amount" type="number" placeholder="Enter US Dollar Amount"/>
-        <label for="amount">Enter US Dollar Amount</label>        
-      </div>
-      <i class="input-group-text bi bi-chevron-double-right"></i>
-      <div class="form-floating">
-        <input class="form-control" id="forexAmount" type="text" placeholder="Enter US Dollar Amount" disabled/>
-        <label for="forexAmount">Foreign Value</label>
-      </div>
-      <select class="form-select-lg text-bg-primary currency" id="currency">
-        <option value="AED">AED</option>
-        <option value="GBP">GBP</option>
-        <option value="KRW">KRW</option>
-        <option value="JPY">JPY </option>
-        <option value="PHP">PHP</option>
-      </select>
-    </div>
-    <button type="submit" class="btn btn-primary form-control mb-2">Submit</button>
-  </form>
+<body class="container d-flex align-items-center justify-content-center">
 
-  <div class="input-group mb-2 mr-sm-2" id="pair-grp">
-    <select class="currency form-select-lg text-bg-warning text-bg-dark"" id="curr1">
-      <option value="AED" selected>USD</option>
-    </select>
-    <div class="form-floating">
-      <input class="form-control" id="forex-amt1" type="number" placeholder="Enter US Dollar Amount"/>
-      <label for="amount">Enter US Dollar Amount</label>        
+  <div class="my-auto">
+    <div class="row mb-3 border border-light">
+      <div>
+        <span class="fs-2 headers shadow px-5">US Dollar Conversion </span>
+      </div>
+      <form class="form-inline needs-validation" id="form">
+        <div class="input-group mb-2 mr-sm-2">
+          <div class="form-floating">
+            <input class="form-control" id="amount" type="number" placeholder="Enter US Dollar Amount"/>
+            <label for="amount">Enter US Dollar Amount</label>        
+          </div>
+          <i class="input-group-text bi bi-chevron-double-right"></i>
+          <div class="form-floating">
+            <input class="form-control" id="forexAmount" type="text" placeholder="Enter US Dollar Amount" disabled/>
+            <label for="forexAmount">Foreign Value</label>
+          </div>
+          <select class="form-select-lg text-bg-primary currency" id="currency">
+            <option value="AED">AED</option>
+            <option value="GBP">GBP</option>
+            <option value="KRW">KRW</option>
+            <option value="JPY">JPY </option>
+            <option value="PHP">PHP</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary form-control mb-2">Submit</button>
+      </form>    
     </div>
-    <span class="input-group-text" id="pair-direction">
-      <i class="bi bi-arrow-left-right "></i>
-    </span>    
-    <div class="form-floating">
-      <input class="form-control" id="forex-amt2" type="text" placeholder="Enter US Dollar Amount"/>
-      <label for="forexAmount">Foreign Value</label>
+    <div class="">
+      
     </div>
-    <select class="currency form-select-lg text-bg-dark" id="curr2">
-      <option value="AED" selected>AED</option>
-    </select>    
+    <div class="row mb-3">
+      <div>
+        <span class="fs-2 px-5 headers">Pair Conversion </span>
+      </div>
+      <div class="input-group mb-2 mr-sm-2" id="pair-grp">
+        <select class="currency form-select-lg text-bg-warning text-bg-dark"" id="curr1">
+          <option value="AED" selected>USD</option>
+        </select>
+        <div class="form-floating">
+          <input class="form-control" id="forex-amt1" type="number" placeholder="Enter US Dollar Amount"/>
+          <label for="amount">Enter US Dollar Amount</label>        
+        </div>
+        <span class="input-group-text" id="pair-direction">
+          <i class="bi bi-arrow-left-right "></i>
+        </span>    
+        <div class="form-floating">
+          <input class="form-control" id="forex-amt2" type="text" placeholder="Enter US Dollar Amount"/>
+          <label for="forexAmount">Foreign Value</label>
+        </div>
+        <select class="currency form-select-lg text-bg-dark" id="curr2">
+          <option value="AED" selected>AED</option>
+        </select>    
+      </div>
+    </div>
+    <div id="error"></div>    
   </div>
-  <div id="error"></div>
-  
 </body>
 
 </html>
