@@ -10,9 +10,9 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devServer: { 
+  devServer: {
     contentBase: './dist'
-  }, 
+  },
   plugins: [
     new Dotenv(),
     new ESLintPlugin(),
@@ -47,11 +47,19 @@ module.exports = {
         ]
       },
       {
-        test:/\.html$/,
+        test: /\.html$/,
         use: [
           'html-loader'
         ]
       },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/,
+        loader: 'file-loader',
+        options: {
+          limit: 10000,
+          name: '[name].[hash:7].[ext]'
+        }
+      },
     ]
-  },  
+  },
 };

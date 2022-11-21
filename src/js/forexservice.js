@@ -54,9 +54,9 @@ export default class ForexService {
     }
   }
 
-  static async getForexAny(base, conv) {
+  static async getForexAny(base, conv, amount) {
     try {
-      const response = await fetch(`https://api.exchangerate.host/convert?from=${base}}&to=${conv}`);
+      const response = await fetch(`https://api.exchangerate.host/convert?from=${base}&to=${conv}&amount=${amount}`);
       const jsonResponse = await response.json();
       if (!response.ok) {
         const errorMessage = `${response.status} ${response.statusText} ${jsonResponse.message}`;

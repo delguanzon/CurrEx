@@ -15,14 +15,12 @@
 
 <body class="container">
   <form class="form-inline needs-validation" id="form">
-    <div class="input-group has-validation mb-2 mr-sm-2">
+    <div class="input-group mb-2 mr-sm-2">
       <div class="form-floating">
         <input class="form-control" id="amount" type="number" placeholder="Enter US Dollar Amount"/>
         <label for="amount">Enter US Dollar Amount</label>        
       </div>
-      <span class="input-group-text">
-        <->
-      </span>
+      <i class="input-group-text bi bi-chevron-double-right"></i>
       <div class="form-floating">
         <input class="form-control" id="forexAmount" type="text" placeholder="Enter US Dollar Amount" disabled/>
         <label for="forexAmount">Foreign Value</label>
@@ -38,24 +36,24 @@
     <button type="submit" class="btn btn-primary form-control mb-2">Submit</button>
   </form>
 
-  <div class="input-group has-validation mb-2 mr-sm-2">
+  <div class="input-group mb-2 mr-sm-2" id="pair-grp">
+    <select class="input-group-text currency form-select-lg text-bg-warning" id="curr1">
+      <option value="AED" selected>USD</option>
+    </select>
     <div class="form-floating">
-      <input class="form-control" id="amount" type="number" placeholder="Enter US Dollar Amount"/>
+      <input class="form-control" id="forex-amt1" type="number" placeholder="Enter US Dollar Amount"/>
       <label for="amount">Enter US Dollar Amount</label>        
     </div>
-    <select class="currency">
-      <option value="AED">AED</option>
-    </select>
     <span class="input-group-text">
       <->
     </span>
     <div class="form-floating">
-      <input class="form-control" id="forexAmount" type="text" placeholder="Enter US Dollar Amount" disabled/>
+      <input class="form-control" id="forex-amt2" type="text" placeholder="Enter US Dollar Amount"/>
       <label for="forexAmount">Foreign Value</label>
     </div>
-    <select class="currency">
-      <option value="AED">AED</option>
-    </select>
+    <select class="input-group-text currency form-select-lg text-bg-warning" id="curr2">
+      <option value="AED" selected>AED</option>
+    </select>    
   </div>
   <div id="error"></div>
   

@@ -1,4 +1,5 @@
 import './assets/css/styles.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import ForexService from './../src/js/forexservice.js';
 
 //Business Logic
@@ -15,6 +16,15 @@ async function getSymbols() {
   const response = await ForexService.getSymbols();
   if (response.success === true) {
     displaySymbols(response);
+  } else {
+    printError(response);
+  }
+}
+
+async function getForexAny(base, conv, amount) {
+  const response = await ForexService.getForexAny(base, conv, amount);
+  if (response.success === true) {
+    printPairConvert(response);
   } else {
     printError(response);
   }
@@ -38,6 +48,12 @@ function printConversion(response) {
   document.getElementById("forexAmount").value = getConvertedValue(rate, amount).toFixed(2);
 }
 
+function printPairConvert(response) {
+  const value = response.result;
+  console.log(value);
+  document.getElementById('forex-amt2').value = value;
+}
+
 function printError(error) {
   document.getElementById("error").replaceChildren("We've encountered an error: " + error + " Please try again later.");
 }
@@ -49,6 +65,13 @@ function handleFormSubmission(e) {
   let seshCtr = parseInt(sessionStorage.getItem("seshCtr"));
   console.log('Number of times a fetch happened: ' + fetchCtr);
   console.log('Number of times a sessionCall happened: ' + seshCtr);
+}
+
+function handleKeypress() {
+  let base = document.getElementById("curr1").value;
+  let conv = document.getElementById("curr2").value;
+  let amount = document.getElementById("forex-amt1").value;
+  getForexAny(base, conv, amount);
 }
 
 function displaySymbols(response) {
@@ -69,4 +92,5 @@ window.addEventListener('load', function () {
   sessionStorage.setItem("seshCtr", 0);
   getSymbols();
   document.getElementById('form').addEventListener('submit', handleFormSubmission);
+  document.getElementById('pair-grp').addEventListener('keyup', handleKeypress);
 });
