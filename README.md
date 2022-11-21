@@ -21,7 +21,7 @@
 
 ## Description
 
-This is a webapp for converting US Dollar Amount into the user's selected currency using the Exchange Rate API <https://www.exchangerate-api.com/>
+This is a webapp for converting US Dollar Amount into the user's selected currency and any value pair conversion from one currency to another.
 
 ## Setup/Installation Requirements
 
