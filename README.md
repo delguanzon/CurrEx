@@ -11,7 +11,6 @@
 * Javascript
 * NodeJS
 * ESLint
-* JEST
 * Babel
 * Webpack
 * Html Loader
