@@ -12,7 +12,14 @@ async function getForexUSD() {
   if (response.conversion_rates) {
     printConversion(response);
   } else {
-    printError(response);
+    if (response.length > 0) {
+      printError(response);
+      console.log(response);
+    } else {
+      const err = "Unable to get conversion data which is could be due to an unsupported currency code";
+      printError(err);
+      console.log(response);
+    }
   }
 }
 
@@ -27,10 +34,17 @@ async function getSymbols() {
 
 async function getForexAny(base, conv, amount, target) {
   const response = await ForexService.getForexAny(base, conv, amount);
-  if (response.result && response.result != null) {
-    printPairConvert(response, target);
-  } else {
-    printError(response);
+  if (response.success == true) {
+    if (response.result && response.result != null) {
+      printPairConvert(response, target);
+    } else {
+      const err = "Unable to convert values due to invalid currency code.";
+      printError(err);
+    }
+  }
+  else {
+    const err = "Unable to convert. Cannot fetch results due to bad connection";
+    printError(err);
   }
 }
 
@@ -50,30 +64,36 @@ function printConversion(response) {
     amount = 1;
     document.getElementById("amount").value = 1;
   }
-  document.getElementById("forex-amount").value = getConvertedValue(rate, amount).toFixed(2);
+
+  if (isNaN(rate)) {
+    printError('Unable to convert due to unsupported currency code.');
+  } else {
+    document.getElementById("forex-amount").value = getConvertedValue(rate, amount).toFixed(2);
+  }
+
 }
 
 function printPairConvert(response, target) {
   const div = document.getElementById("pair-direction");
-  const value = response.result;  
+  const value = response.result;
   div.setAttribute("class", "input-group-text text-bg-success");
   document.getElementById(`${target}`).value = value.toFixed(2);
 }
 
 function printError(error) {
-  document.getElementById("error").replaceChildren("We've encountered an error: " + error + " Please try again later.");
+  document.getElementById("error").replaceChildren(error + " Please check and try again.");
 }
 
 function handleFormSubmission(e) {
   e.preventDefault();
-  getForexUSD();  
+  getForexUSD();
 }
 
 function handleKeyup(e) {
   const curr1 = document.getElementById("curr1").value;
   const curr2 = document.getElementById("curr2").value;
   const amount = parseInt(document.getElementById(e.target.id).value);
-  if(!isNaN(amount)){
+  if (!isNaN(amount)) {
     document.getElementById("error").replaceChildren("");
     if (e.target.id === "forex-amt1") {
       getForexAny(curr1, curr2, amount, "forex-amt2");
@@ -81,7 +101,7 @@ function handleKeyup(e) {
     else if (e.target.id === "forex-amt2") {
       getForexAny(curr2, curr1, amount, "forex-amt1");
     }
-  } else printError("NaN");
+  } else printError("Invalid Value. Please enter a number.");
 }
 
 function handleKeydown(e) {
@@ -101,31 +121,31 @@ function handleSymbolClick(e) {
   const symbolData = JSON.parse(sessionStorage.getItem("symbolData"));
 
   switch (e.target.id) {
-  case ('currency'): {
-    const input = document.getElementById('forex-amount');
-    const lbl = document.getElementById('lbl1');
-    input.value = "";
-    input.setAttribute("placeholder", symbolData.symbols[e.target.value].description);
-    lbl.replaceChildren(symbolData.symbols[e.target.value].description);
-    break;
-  }
-  case ('curr1'): {
-    const input = document.getElementById('forex-amt1');
-    const lbl = document.getElementById('lbl2');
-    input.value = "";
-    input.setAttribute("placeholder", symbolData.symbols[e.target.value].description);
-    lbl.replaceChildren(symbolData.symbols[e.target.value].description);
-    break;
-  }
-  case ('curr2'): {
-    const input = document.getElementById('forex-amt2');
-    const lbl = document.getElementById('lbl3');
-    input.value = "";
-    input.setAttribute("placeholder", symbolData.symbols[e.target.value].description);
-    lbl.replaceChildren(symbolData.symbols[e.target.value].description);
-    break;
-  }
-  default: break;
+    case ('currency'): {
+      const input = document.getElementById('forex-amount');
+      const lbl = document.getElementById('lbl1');
+      input.value = "";
+      input.setAttribute("placeholder", symbolData.symbols[e.target.value].description);
+      lbl.replaceChildren(symbolData.symbols[e.target.value].description);
+      break;
+    }
+    case ('curr1'): {
+      const input = document.getElementById('forex-amt1');
+      const lbl = document.getElementById('lbl2');
+      input.value = "";
+      input.setAttribute("placeholder", symbolData.symbols[e.target.value].description);
+      lbl.replaceChildren(symbolData.symbols[e.target.value].description);
+      break;
+    }
+    case ('curr2'): {
+      const input = document.getElementById('forex-amt2');
+      const lbl = document.getElementById('lbl3');
+      input.value = "";
+      input.setAttribute("placeholder", symbolData.symbols[e.target.value].description);
+      lbl.replaceChildren(symbolData.symbols[e.target.value].description);
+      break;
+    }
+    default: break;
   }
 }
 

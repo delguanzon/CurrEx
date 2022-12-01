@@ -24,7 +24,7 @@ export default class ForexService {
         return jsonResponse;
       }
       catch (error) {
-        return error;
+        return error.message;
       }
     }
     else {
@@ -42,7 +42,7 @@ export default class ForexService {
         const response = await fetch(`https://api.exchangerate.host/symbols`);
         const jsonResponse = await response.json();
         if (!response.ok) {
-          const errorMessage = `${response.status} ${response.statusText} ${jsonResponse.message}`;
+          const errorMessage = `test ${response.status} ${response.statusText} ${jsonResponse.message}`;
           throw new Error(errorMessage);
         }
         sessionStorage.setItem("symbolData", JSON.stringify(jsonResponse));
@@ -62,7 +62,7 @@ export default class ForexService {
       const response = await fetch(`https://api.exchangerate.host/convert?from=${base}&to=${conv}&amount=${amount}`);
       const jsonResponse = await response.json();
       if (!response.ok) {
-        const errorMessage = `${response.status} ${response.statusText} ${jsonResponse.message}`;
+        const errorMessage = `trest ${response.status} ${response.statusText} ${jsonResponse.message}`;
         throw new Error(errorMessage);
       }
       return jsonResponse;
