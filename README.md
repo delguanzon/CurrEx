@@ -27,18 +27,19 @@ This is a webapp for converting US Dollar Amount into the user's selected curren
 * Clone this repository on your desktop
 * Navigate to the top level of the directory using bash or cmd
 * Run ``` $npm install ``` to install dependencies
+* Then please follow the steps for setting up the API Key below before building and preview of the project.
 * For building and live preview, use ```npm run start```
 
-### API Key Setup Instructions
+#### API Key Setup Instructions
 
-#### Where to get the API key
+##### Where to get the API key
 
 * Visit the ExchangeRate-API site <https://www.exchangerate-api.com/>. Input your email address and click the "Get Free Key" button.
 * You'll be prompted to create an account with your email, first name and a password. Agree to the terms of use and click "Get Started!"
 * At this point, you'll be able to access a dashboard that includes your API key as well as your remaining API calls for the month
 
 
-#### How to use the API Key in the project
+##### How to use the API Key in the project
 
 * Using your window explorer, Create a .env file in the top level of the directory .
 * Edit the file and type in ``` API_KEY=YOUR+API+KEY+HERE ```  , where you replace the value with your own API Key.
